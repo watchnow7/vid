@@ -782,9 +782,14 @@
         document.body.style.overflow = "";
         if (progressTimer) { clearInterval(progressTimer); progressTimer = null; }
       }
+      /* All video cards open the same destination link */
+      var COMMON_VIDEO_LINK = "https://google.com";
       document.addEventListener("click", function (e) {
         var t = e.target.closest("[data-open-video]");
-        if (t) openVideo(parseInt(t.getAttribute("data-open-video"), 10));
+        if (t) {
+          e.preventDefault();
+          window.location.href = COMMON_VIDEO_LINK;
+        }
       });
       document.getElementById("modalClose").addEventListener("click", closeVideo);
       modal.addEventListener("click", function (e) { if (e.target === modal) closeVideo(); });
